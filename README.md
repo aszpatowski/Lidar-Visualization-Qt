@@ -14,8 +14,14 @@ Użytkownik po wgraniu danych będzię mógł dostosować kolorystyke wizualizac
 - Eksport wizualizacji jako:
   - plik graficzny (w formacie png)
   - plik wideo (w raz z możliwością ustawienia trwania pojedycznej klatki filmu)
-## Wykonane zadania
+## Wstępne przygotowanie projektu (20.10.2020)
 - [x] - Instalacja QtCreatora i poprawne wyświetlenie podstawowego okienka.
-- [x] - Pobranie danych i wstępna analiza za pomocą pythona.
-- [ ] - Stworzenie wstępnego interfejsu graficznego.
-- [ ] - ... (zadania będą dodawane wraz z rozwojem projektu w kolejnych raportach)
+- [x] - Pobranie danych i wstępna analiza ich struktury za pomocą pythona.
+
+## Raport I (03.11.2020)
+- [x] - zaprojektowanie wstępnego prostego interfejsu graficznego (będzie dalej rozwijany).
+- [x] - wczytywanie danych za pomocą interfejsu aplikacji (użytkownik podaje lokalizacje pliku csv).
+- [x] - sprawdzanie poprawności ścieżki i formatu danych oraz wyświetlanie użytkownikowi adekwatnego komunikatu.
+- [x] - odczyt danych i wstępna obróbka przed wizualizacją danych w widgetcie OpenGL.
+
+
