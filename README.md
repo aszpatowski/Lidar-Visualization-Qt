@@ -29,4 +29,4 @@ Użytkownik po wgraniu danych będzię mógł dostosować kolorystyke wizualizac
 - [x] - skonfigurowanie widgetu openGL do tworzenia wizualizacji.
 - [x] - tworzenie prymitywnej wizualizacji za pomocą danych pobranych od użytkownika.
 ### Funkcjonalność aplikacji w dzień raportu II
-<img src="https://github.com/aszpatowski/Lidar-Visualization-Qt/raport2funkc.gif"/>
+<img src="https://github.com/aszpatowski/Lidar-Visualization-Qt/blob/master/raport2funkc.gif"/>
