@@ -20,8 +20,13 @@ Użytkownik po wgraniu danych będzię mógł dostosować kolorystyke wizualizac
 
 ## Raport I (03.11.2020)
 - [x] - zaprojektowanie wstępnego prostego interfejsu graficznego (będzie dalej rozwijany).
-- [x] - wczytywanie danych za pomocą interfejsu aplikacji (użytkownik podaje lokalizacje pliku csv).
+- [x] - wczytywanie danych za pomocą interfejsu aplikacji (użytkownik podaje ręcznie ścieżkę pliku csv).
 - [x] - sprawdzanie poprawności ścieżki i formatu danych oraz wyświetlanie użytkownikowi adekwatnego komunikatu.
 - [x] - odczyt danych i wstępna obróbka przed wizualizacją danych w widgetcie OpenGL.
-
-
+## Raport II (17.11.2020)
+- [x] - stworzenie eksploatora plików w aplikacji w celu wybrania ścieżki do danych.
+- [x] - utworzenie klasy MyOpenGlWidget z podstawowymi funkcjonalnościami. 
+- [x] - skonfigurowanie widgetu openGL do tworzenia wizualizacji.
+- [x] - tworzenie prymitywnej wizualizacji za pomocą danych pobranych od użytkownika.
+### Funkcjonalność aplikacji w dzień raportu II
+<img src="https://github.com/aszpatowski/Lidar-Visualization-Qt/raport2funkc.gif"/>
