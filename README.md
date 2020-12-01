@@ -39,3 +39,5 @@ Użytkownik po wgraniu danych będzię mógł dostosować kolorystyke wizualizac
 
 ### Funkcjonalność aplikacji w dzień raportu III
 <img width ="900" src="https://github.com/aszpatowski/Lidar-Visualization-Qt/blob/master/raport3funkc.gif"/>
+
+Dane użyte do generowania wizualizacji: https://drive.google.com/file/d/1F6QjhFEiY_vIJTU7E7YA-PcnQQ1qHxe4/view
