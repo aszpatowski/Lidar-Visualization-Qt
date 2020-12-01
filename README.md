@@ -34,7 +34,7 @@ Użytkownik po wgraniu danych będzię mógł dostosować kolorystyke wizualizac
 - [x] - dodanie możliwość generowania więcej niż jednej wizualizacji.
 - [x] - dodanie nawigacji w interfejsie pomiędzy wizualizacjami.
 - [x] - zaimplementowanie algorytmów do normalizacji danych. (w poprzednim raporcie wizualizacja odbywała się na danych już znormalizowanych za pomocą pythona.) 
-### Funkcjonalność aplikacji w dzień raportu II
+###Funkcjonalność aplikacji w dzień raportu II
 <img src="https://github.com/aszpatowski/Lidar-Visualization-Qt/blob/master/raport2funkc.gif"/>
-### Funkcjonalność aplikacji w dzień raportu III
+###Funkcjonalność aplikacji w dzień raportu III
 <img src="https://github.com/aszpatowski/Lidar-Visualization-Qt/blob/master/raport3.gif"/>
