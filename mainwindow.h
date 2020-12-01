@@ -24,7 +24,12 @@ private slots:
 
     void on_pushButton_Generate_clicked();
 
+    void on_pushPrevious_clicked();
+
+    void on_pushNext_clicked();
+
 private:
     Ui::MainWindow *ui;
+    int readCSV(QStringList pathes);
 };
 #endif // MAINWINDOW_H

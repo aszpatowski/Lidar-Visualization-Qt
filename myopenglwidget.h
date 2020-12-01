@@ -30,6 +30,8 @@ protected:
 private:
     void qColorToRGB(const QColor &C, float &r,float &g,float &b) const;
     float normalize_0_1(float val, float min, float max) const;
+    double normalize_0_1d(double val, double min, double max) const;
+    QVector <double> colorByDistance(double distance);
     QVector <double> xList,yList,zList;
     bool loadedFile = false;
 };
