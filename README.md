@@ -38,4 +38,4 @@ Użytkownik po wgraniu danych będzię mógł dostosować kolorystyke wizualizac
 <img width = "900" src="https://github.com/aszpatowski/Lidar-Visualization-Qt/blob/master/raport2funkc.gif"/>
 
 ### Funkcjonalność aplikacji w dzień raportu III
-<img width ="900" src="https://github.com/aszpatowski/Lidar-Visualization-Qt/blob/master/raport3.gif"/>
+<img width ="900" src="https://github.com/aszpatowski/Lidar-Visualization-Qt/blob/master/raport3funkc.gif"/>
