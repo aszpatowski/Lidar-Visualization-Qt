@@ -5,6 +5,9 @@
 #include <QFileInfo>
 #include <QDebug>
 #include <QOpenGLWindow>
+#include "exportchoice.h"
+#include "exportimage.h"
+#include "exportvideo.h"
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -14,6 +17,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 public:
     MainWindow(QWidget *parent = nullptr);
+
     ~MainWindow();
 
 private slots:
@@ -28,8 +32,15 @@ private slots:
 
     void on_pushNext_clicked();
 
+    void on_pushButtonExport_clicked();
+
+    void on_verticalSliderColorDepth_valueChanged(int value);
+
 private:
     Ui::MainWindow *ui;
+    exportChoice *exportchoice;
+    exportImage *exportimage;
+    exportVideo *exportvideo;
     int readCSV(QStringList pathes);
 };
 #endif // MAINWINDOW_H

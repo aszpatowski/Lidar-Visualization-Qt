@@ -11,15 +11,24 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    exportchoice.cpp \
+    exportimage.cpp \
+    exportvideo.cpp \
     main.cpp \
     mainwindow.cpp \
     myopenglwidget.cpp
 
 HEADERS += \
+    exportchoice.h \
+    exportimage.h \
+    exportvideo.h \
     mainwindow.h \
     myopenglwidget.h
 
 FORMS += \
+    exportchoice.ui \
+    exportimage.ui \
+    exportvideo.ui \
     mainwindow.ui
 
 # Default rules for deployment.

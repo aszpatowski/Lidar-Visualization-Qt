@@ -6,6 +6,9 @@
 #include <QVector>
 #include <QFileDialog>
 #include <algorithm>
+#include "exportchoice.h"
+#include "exportimage.h"
+#include "exportvideo.h"
 QVector <QVector < QVector < double > > > frames;
 int currentFrameCount, amountOfFrames;
 
@@ -13,9 +16,7 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
 {
     ui->setupUi(this);
     ui->labelInfo->setVisible(false);
-    ui->pushNext->setIcon(QIcon("/QtProjects/LidarRadarVisualizationQt/nextIcon.png"));
     ui->pushNext->setVisible(false);
-    ui->pushPrevious->setIcon(QIcon("/QtProjects/LidarRadarVisualizationQt/previousIcon.png"));
     ui->pushPrevious->setVisible(false);
 }
 
@@ -97,6 +98,7 @@ void MainWindow::on_pushButton_Load_clicked()
         ui->labelInfo->setText("Sukces");
         ui->labelInfo->setVisible(true);
         ui->pushButton_Generate->setEnabled(true);
+        ui->pushButtonExport->setEnabled(true);
     }
 }
 
@@ -160,4 +162,29 @@ void MainWindow::on_pushNext_clicked()
     ui->pushPrevious->setEnabled(true);
     ui->labelFrame->setText(QString::number(currentFrameCount)+"/"+QString::number(amountOfFrames));
 
+}
+
+void MainWindow::on_pushButtonExport_clicked()
+{
+    exportchoice = new exportChoice(this);
+    exportchoice->setAttribute(Qt::WA_DeleteOnClose);
+    exportchoice->exec();
+    if(exportchoice->getChoice())
+    {
+        exportvideo = new exportVideo(this);
+        exportvideo->setAttribute(Qt::WA_DeleteOnClose);
+        exportvideo->show();
+    }
+    else
+    {
+        exportimage = new exportImage(this);
+        exportimage->setAttribute(Qt::WA_DeleteOnClose);
+        exportimage->show();
+    }
+}
+
+void MainWindow::on_verticalSliderColorDepth_valueChanged(int value)
+{
+    ui->OpenGLWidget->changeColorDepth(value);
+    ui->OpenGLWidget->takeVectors(frames[currentFrameCount-1][0],frames[currentFrameCount-1][1],frames[currentFrameCount-1][2]);
 }

@@ -41,15 +41,6 @@ void MyOpenGLWidget::paintGL()
         }
         else
         {
-        float r,g,b;
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        glPointSize(5.0f);
-        glBegin(GL_POINTS);
-        qColorToRGB(Qt::green, r, g, b);
-        glColor3f(r,g,b);
-        glVertex3f(-0.5f,-0.5f,-0.5f);
-        glVertex3f(0.5f,-0.5f,-0.5f);
-        glEnd();
         }
 }
 void MyOpenGLWidget::resizeGL(int w, int h)
@@ -83,29 +74,29 @@ double MyOpenGLWidget::normalize_0_1d(double val, double min, double max) const
 QVector <double> MyOpenGLWidget::colorByDistance(double distance)
 {
     QVector <double> rgb;
-    if (distance<-0.4)
+    if (distance<colorIntensity)
     {
-        rgb<<1<<normalize_0_1d(distance,-1,-0.4)<<0;
+        rgb<<1<<normalize_0_1d(distance,-1,colorIntensity)<<0;
         return rgb;
     }
-    if (distance<0.3)
+    if (distance<colorIntensity+0.4)
     {
-        rgb<<normalize_0_1d(distance,0.3,-0.4)<<1<<0;
+        rgb<<normalize_0_1d(distance,colorIntensity+0.4,colorIntensity)<<1<<0;
         return rgb;
     }
-    if (distance<0.45)
+    if (distance<colorIntensity+0.7)
     {
-        rgb<<0<<1<<normalize_0_1d(distance,0.3,0.45);
+        rgb<<0<<1<<normalize_0_1d(distance,colorIntensity+0.4,colorIntensity+0.7);
         return rgb;
     }
-    if (distance<0.8)
+    if (distance<colorIntensity+1)
     {
-        rgb<<0<<normalize_0_1d(distance,0.8,0.45)<<1;
+        rgb<<0<<normalize_0_1d(distance,colorIntensity+1.2,colorIntensity+1)<<1;
         return rgb;
     }
     else
     {
-        rgb<<0<<0<<normalize_0_1d(distance,1,0.8);
+        rgb<<0<<0<<normalize_0_1d(distance,1,colorIntensity+1.2);
         return rgb;
     }
 }

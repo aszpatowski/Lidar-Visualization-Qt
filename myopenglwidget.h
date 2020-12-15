@@ -23,6 +23,10 @@ public:
         loadedFile = true;
         repaint();
     }
+    void changeColorDepth(int value)
+    {
+        colorIntensity = double(value)/100;
+    }
 protected:
     void initializeGL() override;
     void paintGL() override;
@@ -34,6 +38,7 @@ private:
     QVector <double> colorByDistance(double distance);
     QVector <double> xList,yList,zList;
     bool loadedFile = false;
+    double colorIntensity = -0.4;
 };
 
 #endif // MYOPENGLWIDGET_H
