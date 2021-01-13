@@ -46,8 +46,6 @@ Użytkownik po wgraniu danych będzię mógł dostosować kolorystyke wizualizac
 <img width ="900" src="https://github.com/aszpatowski/Lidar-Visualization-Qt/blob/master/raport3funkc.gif"/>
 
 ### Funkcjonalność aplikacji w dzień raportu IV
-<video width="900" controls>
-  <source src="https://github.com/aszpatowski/Lidar-Visualization-Qt/blob/master/stanRaport4.mp4" type="video/mp4">
-</video>
+#### https://i.imgur.com/8KPaPfX.mp4
 
 Dane użyte do generowania wizualizacji: https://drive.google.com/file/d/1F6QjhFEiY_vIJTU7E7YA-PcnQQ1qHxe4/view
