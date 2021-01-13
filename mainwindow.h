@@ -36,11 +36,19 @@ private slots:
 
     void on_verticalSliderColorDepth_valueChanged(int value);
 
+    void on_verticalSliderFrames_valueChanged(int value);
+
+    void on_pushButtonPlay_clicked();
+
+    void exportImages();
+
 private:
     Ui::MainWindow *ui;
     exportChoice *exportchoice;
     exportImage *exportimage;
     exportVideo *exportvideo;
+    void previousFrame();
+    void nextFrame();
     int readCSV(QStringList pathes);
 };
 #endif // MAINWINDOW_H

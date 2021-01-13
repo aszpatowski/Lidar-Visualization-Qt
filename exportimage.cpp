@@ -19,6 +19,17 @@ void exportImage::on_pushButton_clicked()
                                                            "C://",
                                                            QFileDialog::ShowDirsOnly
                                                            | QFileDialog::DontResolveSymlinks);
-    ui->lineEdit->clear();
-    ui->lineEdit->insert(folderpath);
+    ui->lineEditFolder->clear();
+    ui->lineEditFolder->insert(folderpath);
 }
+
+void exportImage::on_pushButtonExport_clicked()
+{
+    path = ui->lineEditFolder->text();
+    filename = ui->lineEditFileName->text();
+    format = ui->comboBoxFormat->currentText();
+    this->close();
+
+}
+
+

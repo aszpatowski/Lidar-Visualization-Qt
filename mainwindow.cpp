@@ -5,6 +5,8 @@
 #include <QMessageBox>
 #include <QVector>
 #include <QFileDialog>
+#include <QTime>
+#include <QThread>
 #include <algorithm>
 #include "exportchoice.h"
 #include "exportimage.h"
@@ -92,6 +94,12 @@ void MainWindow::on_pushButton_Load_clicked()
     {
         ui->labelInfo->setText("Porażka");
         ui->labelInfo->setVisible(true);
+        ui->pushButton_Generate->setEnabled(false);
+        ui->pushButtonExport->setEnabled(false);
+        ui->pushButtonPlay->setEnabled(false);
+        ui->checkBoxCurrentFrame->setEnabled(false);
+        ui->verticalSliderColorDepth->setEnabled(false);
+        ui->verticalSliderFrames->setEnabled(false);
     }
     else
     {
@@ -99,6 +107,8 @@ void MainWindow::on_pushButton_Load_clicked()
         ui->labelInfo->setVisible(true);
         ui->pushButton_Generate->setEnabled(true);
         ui->pushButtonExport->setEnabled(true);
+        ui->pushButtonPlay->setEnabled(true);
+        ui->checkBoxCurrentFrame->setEnabled(true);
     }
 }
 
@@ -123,6 +133,9 @@ void MainWindow::on_OpenFile_clicked()
 
 void MainWindow::on_pushButton_Generate_clicked()
 {
+
+    ui->verticalSliderColorDepth->setEnabled(true);
+    ui->verticalSliderFrames->setEnabled(true);
     ui->OpenGLWidget->takeVectors(frames[currentFrameCount-1][0],frames[currentFrameCount-1][1],frames[currentFrameCount-1][2]);
     if(amountOfFrames>1)
     {
@@ -136,32 +149,38 @@ void MainWindow::on_pushButton_Generate_clicked()
     }
     ui->labelFrame->setText(QString::number(currentFrameCount)+"/"+QString::number(amountOfFrames));
 }
+void MainWindow::nextFrame()
+{
+    currentFrameCount+=1;
+    ui->OpenGLWidget->takeVectors(frames[currentFrameCount-1][0],frames[currentFrameCount-1][1],frames[currentFrameCount-1][2]);
 
-
-void MainWindow::on_pushPrevious_clicked()
+}
+void MainWindow::previousFrame()
 {
     currentFrameCount-=1;
     ui->OpenGLWidget->takeVectors(frames[currentFrameCount-1][0],frames[currentFrameCount-1][1],frames[currentFrameCount-1][2]);
+}
+
+void MainWindow::on_pushPrevious_clicked()
+{
+    MainWindow::previousFrame();
+    ui->pushNext->setEnabled(true);
+    ui->labelFrame->setText(QString::number(currentFrameCount)+"/"+QString::number(amountOfFrames));
     if(currentFrameCount==1)
     {
         ui->pushPrevious->setEnabled(false);
     }
-    ui->pushNext->setEnabled(true);
-    ui->labelFrame->setText(QString::number(currentFrameCount)+"/"+QString::number(amountOfFrames));
-
 }
 
 void MainWindow::on_pushNext_clicked()
 {
-    currentFrameCount+=1;
-    ui->OpenGLWidget->takeVectors(frames[currentFrameCount-1][0],frames[currentFrameCount-1][1],frames[currentFrameCount-1][2]);
+    MainWindow::nextFrame();
+    ui->pushPrevious->setEnabled(true);
+    ui->labelFrame->setText(QString::number(currentFrameCount)+"/"+QString::number(amountOfFrames));
     if(currentFrameCount==amountOfFrames)
     {
         ui->pushNext->setEnabled(false);
     }
-    ui->pushPrevious->setEnabled(true);
-    ui->labelFrame->setText(QString::number(currentFrameCount)+"/"+QString::number(amountOfFrames));
-
 }
 
 void MainWindow::on_pushButtonExport_clicked()
@@ -173,13 +192,14 @@ void MainWindow::on_pushButtonExport_clicked()
     {
         exportvideo = new exportVideo(this);
         exportvideo->setAttribute(Qt::WA_DeleteOnClose);
-        exportvideo->show();
+        exportvideo->exec();
     }
     else
     {
         exportimage = new exportImage(this);
         exportimage->setAttribute(Qt::WA_DeleteOnClose);
-        exportimage->show();
+        exportimage->exec();
+        exportImages();
     }
 }
 
@@ -188,3 +208,89 @@ void MainWindow::on_verticalSliderColorDepth_valueChanged(int value)
     ui->OpenGLWidget->changeColorDepth(value);
     ui->OpenGLWidget->takeVectors(frames[currentFrameCount-1][0],frames[currentFrameCount-1][1],frames[currentFrameCount-1][2]);
 }
+
+void MainWindow::on_verticalSliderFrames_valueChanged(int value)
+{
+    ui->labelFrames->setNum(value);
+}
+
+void delay( int millisecondsToWait )
+{
+    QTime dieTime = QTime::currentTime().addMSecs( millisecondsToWait );
+    while( QTime::currentTime() < dieTime )
+    {
+        QCoreApplication::processEvents( QEventLoop::AllEvents, 100 );
+    }
+}
+
+void MainWindow::on_pushButtonPlay_clicked()
+{
+    int framesPerSec = ui->verticalSliderFrames->value();
+    int msInterval = 1000/framesPerSec;
+    bool playBegin = ui->checkBoxCurrentFrame->isChecked();
+    if(playBegin){}
+    else
+    {
+        currentFrameCount=1;
+        ui->OpenGLWidget->takeVectors(frames[currentFrameCount-1][0],frames[currentFrameCount-1][1],frames[currentFrameCount-1][2]);
+        ui->labelFrame->setText(QString::number(currentFrameCount)+"/"+QString::number(amountOfFrames));
+        ui->pushPrevious->setEnabled(true);
+        ui->pushNext->setEnabled(true);
+    }
+    int originalFrameCount = currentFrameCount;
+    ui->pushNext->setEnabled(false);
+    ui->pushPrevious->setEnabled(false);
+    for(int i = currentFrameCount;i<amountOfFrames;i++)
+    {
+        MainWindow::nextFrame();
+        ui->labelFrame->setText(QString::number(currentFrameCount)+"/"+QString::number(amountOfFrames));
+        delay(msInterval);
+    }
+    delay(500);
+    currentFrameCount = originalFrameCount;
+    ui->labelFrame->setText(QString::number(currentFrameCount)+"/"+QString::number(amountOfFrames));
+    ui->OpenGLWidget->takeVectors(frames[currentFrameCount-1][0],frames[currentFrameCount-1][1],frames[currentFrameCount-1][2]);
+    ui->pushNext->setEnabled(true);
+    ui->pushPrevious->setEnabled(true);
+    if(currentFrameCount==amountOfFrames)
+    {
+        ui->pushNext->setEnabled(false);
+    }
+    else if(currentFrameCount==1)
+    {
+        ui->pushPrevious->setEnabled(false);
+    }
+
+
+
+}
+void MainWindow::exportImages()
+{
+    ui->pushNext->setEnabled(false);
+    ui->pushPrevious->setEnabled(false);
+    QStringList data = exportimage->getDataExport();
+    QString path = data[0];
+    QString file = data[1];
+    QString format = data[2];
+    QString slash = "/";
+    for(int i = 0;i<amountOfFrames;i++)
+    {
+        ui->OpenGLWidget->takeVectors(frames[i][0],frames[i][1],frames[i][2]);
+        ui->labelFrame->setText(QString::number(i+1)+"/"+QString::number(amountOfFrames));
+        ui->OpenGLWidget->grabFramebuffer().save(""+path+slash+file+QString::number(i)+format);
+        //qApp->processEvents();
+    }
+    ui->labelFrame->setText(QString::number(currentFrameCount)+"/"+QString::number(amountOfFrames));
+    ui->OpenGLWidget->takeVectors(frames[currentFrameCount-1][0],frames[currentFrameCount-1][1],frames[currentFrameCount-1][2]);
+    ui->pushNext->setEnabled(true);
+    ui->pushPrevious->setEnabled(true);
+    if(currentFrameCount==amountOfFrames)
+    {
+        ui->pushNext->setEnabled(false);
+    }
+    else if(currentFrameCount==1)
+    {
+        ui->pushPrevious->setEnabled(false);
+    }
+
+};

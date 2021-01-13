@@ -18,12 +18,12 @@
   <property name="windowTitle">
    <string>Wyeksportuj plik zdjeciowy</string>
   </property>
-  <widget class="QLineEdit" name="lineEdit">
+  <widget class="QLineEdit" name="lineEditFolder">
    <property name="geometry">
     <rect>
-     <x>30</x>
+     <x>20</x>
      <y>20</y>
-     <width>291</width>
+     <width>301</width>
      <height>21</height>
     </rect>
    </property>
@@ -57,9 +57,9 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>26</x>
-     <y>63</y>
-     <width>51</width>
+     <x>20</x>
+     <y>60</y>
+     <width>61</width>
      <height>20</height>
     </rect>
    </property>
@@ -90,7 +90,7 @@
     <string>Nazwa pliku/plików</string>
    </property>
   </widget>
-  <widget class="QComboBox" name="comboBox">
+  <widget class="QComboBox" name="comboBoxFormat">
    <property name="geometry">
     <rect>
      <x>80</x>
@@ -106,31 +106,31 @@
    </property>
    <item>
     <property name="text">
-     <string>PNG</string>
+     <string>.png</string>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>JPG</string>
+     <string>.jpg</string>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>JPEG</string>
+     <string>.jpeg</string>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>BMP</string>
+     <string>.bmp</string>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>PPM</string>
+     <string>.ppm</string>
     </property>
    </item>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_2">
+  <widget class="QLineEdit" name="lineEditFileName">
    <property name="geometry">
     <rect>
      <x>150</x>
@@ -145,7 +145,7 @@
     </font>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_2">
+  <widget class="QPushButton" name="pushButtonExport">
    <property name="geometry">
     <rect>
      <x>290</x>
