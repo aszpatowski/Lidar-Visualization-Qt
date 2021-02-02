@@ -3,7 +3,7 @@
 #include <QColor>
 #include <QOpenGLWidget>
 #include <QOpenGLFunctions>
-
+#include <QtMath>
 MyOpenGLWidget::MyOpenGLWidget(QWidget *parent)
 :QOpenGLWidget {parent}
 {
@@ -30,14 +30,13 @@ void MyOpenGLWidget::paintGL()
             for (size_t i = 0;i<length;i++)
             {
                 //glPointSize(1.0f);
-                rgb = colorByDistance(yList[i]);
+                rgb = colorByDistance(qSqrt(zList[i]*zList[i]+xList[i]*xList[i]));
                 glPointSize(1.0f);
                 glColor3f(rgb[0],rgb[1],rgb[2]);
                 glBegin(GL_POINTS);
                 glVertex3d(xList[i],zList[i],yList[i]);
                 glEnd();
             }
-
         }
         else
         {
@@ -74,30 +73,62 @@ double MyOpenGLWidget::normalize_0_1d(double val, double min, double max) const
 QVector <double> MyOpenGLWidget::colorByDistance(double distance)
 {
     QVector <double> rgb;
-    if (distance<colorIntensity)
+    bool a = true;
+    if(a)
     {
-        rgb<<1<<normalize_0_1d(distance,-1,colorIntensity)<<0;
-        return rgb;
-    }
-    if (distance<colorIntensity+0.4)
-    {
-        rgb<<normalize_0_1d(distance,colorIntensity+0.4,colorIntensity)<<1<<0;
-        return rgb;
-    }
-    if (distance<colorIntensity+0.7)
-    {
-        rgb<<0<<1<<normalize_0_1d(distance,colorIntensity+0.4,colorIntensity+0.7);
-        return rgb;
-    }
-    if (distance<colorIntensity+1)
-    {
-        rgb<<0<<normalize_0_1d(distance,colorIntensity+1.2,colorIntensity+1)<<1;
-        return rgb;
+        if (abs(distance)<(colorIntensity+1)/2)
+        {
+            rgb<<1<<normalize_0_1d(abs(distance),0,(colorIntensity+1)/2)<<0;
+            return rgb;
+        }
+        if (abs(distance)<(colorIntensity+0.4+1)/2)
+        {
+            rgb<<normalize_0_1d(abs(distance),(colorIntensity+0.4+1)/2,(colorIntensity+1)/2)<<1<<0;
+            return rgb;
+        }
+        if (abs(distance)<(colorIntensity+0.7+1)/2)
+        {
+            rgb<<0<<1<<normalize_0_1d(abs(distance),(colorIntensity+0.4+1)/2,(colorIntensity+0.7+1)/2);
+            return rgb;
+        }
+        if (abs(distance)<(colorIntensity+1+1)/2)
+        {
+            rgb<<0<<normalize_0_1d(abs(distance),(colorIntensity+1.2+1)/2,(colorIntensity+1+1)/2)<<1;
+            return rgb;
+        }
+        else
+        {
+            rgb<<0<<0<<normalize_0_1d(abs(distance),1,(colorIntensity+1.2+1)/2);
+            return rgb;
+        }
     }
     else
     {
-        rgb<<0<<0<<normalize_0_1d(distance,1,colorIntensity+1.2);
-        return rgb;
+        if (distance<colorIntensity)
+        {
+            rgb<<1<<normalize_0_1d(distance,-1,colorIntensity)<<0;
+            return rgb;
+        }
+        if (distance<colorIntensity+0.4)
+        {
+            rgb<<normalize_0_1d(distance,colorIntensity+0.4,colorIntensity)<<1<<0;
+            return rgb;
+        }
+        if (distance<colorIntensity+0.7)
+        {
+            rgb<<0<<1<<normalize_0_1d(distance,colorIntensity+0.4,colorIntensity+0.7);
+            return rgb;
+        }
+        if (distance<colorIntensity+1)
+        {
+            rgb<<0<<normalize_0_1d(distance,colorIntensity+1.2,colorIntensity+1)<<1;
+            return rgb;
+        }
+        else
+        {
+            rgb<<0<<0<<normalize_0_1d(distance,1,colorIntensity+1.2);
+            return rgb;
+        }
     }
-}
+    }
 

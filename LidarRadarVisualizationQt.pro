@@ -16,7 +16,8 @@ SOURCES += \
     exportvideo.cpp \
     main.cpp \
     mainwindow.cpp \
-    myopenglwidget.cpp
+    myopenglwidget.cpp \
+    options.cpp
 
 HEADERS += \
     exportchoice.h \
@@ -24,14 +25,18 @@ HEADERS += \
     exportvideo.h \
     mainwindow.h \
     myopenglwidget.h \
+    options.h
 
 FORMS += \
     exportchoice.ui \
     exportimage.ui \
     exportvideo.ui \
-    mainwindow.ui
+    mainwindow.ui \
+    options.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RC_ICONS = icons/Lidaricon.ico

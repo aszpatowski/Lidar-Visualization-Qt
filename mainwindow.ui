@@ -110,7 +110,7 @@
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>90</y>
+      <y>120</y>
       <width>111</width>
       <height>31</height>
      </rect>
@@ -182,7 +182,7 @@
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>130</y>
+      <y>160</y>
       <width>111</width>
       <height>31</height>
      </rect>
@@ -331,6 +331,22 @@
     </property>
     <property name="text">
      <string>Od bieżącej klatki</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_Options">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>80</y>
+      <width>91</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Opcje</string>
     </property>
    </widget>
   </widget>

@@ -5,9 +5,11 @@
 #include <QFileInfo>
 #include <QDebug>
 #include <QOpenGLWindow>
+#include <QJsonDocument>
 #include "exportchoice.h"
 #include "exportimage.h"
 #include "exportvideo.h"
+#include "options.h"
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -42,11 +44,16 @@ private slots:
 
     void exportImages();
 
+    void exportVideoFile();
+
+    void on_pushButton_Options_clicked();
+
 private:
     Ui::MainWindow *ui;
     exportChoice *exportchoice;
     exportImage *exportimage;
     exportVideo *exportvideo;
+    Options *options;
     void previousFrame();
     void nextFrame();
     int readCSV(QStringList pathes);
