@@ -1,7 +1,8 @@
 # Lidar-Visualization-Qt
 Głównym założeniem programu jest wizualizacja danych z LiDAR (ang. Light Detection And Ranging, urządzenie skanujące otoczenie za pomocą światła lasera pozwalające określić odległość od obiektów).
 Do tworzenia projektu będę posiłkował się darmowym zbiorem danych z lidarów zamontowanych na samochodach autonomicznych (źródło danych: https://pandaset.org/).
-Użytkownik po wgraniu danych będzię mógł dostosować kolorystyke wizualizacji oraz zależnie od ilości wgranych danych wygenerować plik/pliki w formacie png lub plik wideo.
+Użytkownik po wgraniu danych będzię mógł dostosować kolorystyke wizualizacji oraz zależnie od ilości wgranych danych wygenerować plik/pliki w formacie png lub plik wideo.<br>
+(gif wygenerowany w końcowej wersji programu)
 <img width ="900" src="https://github.com/aszpatowski/Lidar-Visualization-Qt/blob/master/final.gif"/>
 ## Technologie
 - C++ (prawdopodobnie pre obróbka danych będzie wykonywana w skryptach napisanych w pythonie)
