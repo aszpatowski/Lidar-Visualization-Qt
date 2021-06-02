@@ -5,6 +5,8 @@ Użytkownik po wgraniu danych będzię mógł dostosować kolorystyke wizualizac
 ## Rezultat końcowy
 <img width ="900" src="https://github.com/aszpatowski/Lidar-Visualization-Qt/blob/master/example_video_n_gifs/final.gif"/>
 <img width ="900" src="https://github.com/aszpatowski/Lidar-Visualization-Qt/blob/master/example_video_n_gifs/dzialanie_programu_lidar.gif"/>
+</br>
+
 ## Technologie
 - C++ (prawdopodobnie pre obróbka danych będzie wykonywana w skryptach napisanych w pythonie)
 - Qt
@@ -20,7 +22,6 @@ Użytkownik po wgraniu danych będzię mógł dostosować kolorystyke wizualizac
 ## Wstępne przygotowanie projektu (20.10.2020)
 - [x] - Instalacja QtCreatora i poprawne wyświetlenie podstawowego okienka.
 - [x] - Pobranie danych i wstępna analiza ich struktury za pomocą pythona.
-
 ## Raport I (03.11.2020)
 - [x] - Zaprojektowanie wstępnego prostego interfejsu graficznego (będzie dalej rozwijany).
 - [x] - Wczytywanie danych za pomocą interfejsu aplikacji (użytkownik podaje ręcznie ścieżkę pliku csv).
